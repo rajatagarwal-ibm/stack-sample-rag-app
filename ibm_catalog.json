@@ -82,54 +82,200 @@
           "dependency_version_2": true,
           "configuration": [
             {
-              "key": "prefix",
+              "key": "cos_kms_crn",
               "type": "string",
-              "description": "A prefix added to the name of all resources created by this solution. Used to avoid name clashes in the target account when existing this solution multiple times.",
-              "default_value": "rag",
+              "default_value": "__NULL__",
+              "required": false
+            },
+            {
+              "key": "trigger_ci_pipeline_run",
+              "type": "boolean",
+              "default_value": true,
+              "required": false
+            },
+            {
+              "key": "toolchain_region",
+              "type": "string",
+              "default_value": "__NOT_SET__",
               "required": true
             },
             {
-              "key": "ibmcloud_api_key",
-              "type": "password",
-              "description": "The API Key used to provision all resources created in this solution.",
+              "key": "watson_machine_learning_instance_resource_name",
+              "type": "string",
+              "default_value": "__NULL__",
+              "required": false
+            },
+            {
+              "key": "watson_project_sensitive",
+              "type": "boolean",
+              "default_value": "false",
+              "required": false
+            },
+            {
+              "key": "elastic_index_name",
+              "type": "string",
+              "default_value": "sample-rag-app-content",
+              "required": false
+            },
+            {
+              "key": "secrets_manager_guid",
+              "type": "string",
+              "default_value": "__NOT_SET__",
+              "required": true
+            },
+            {
+              "key": "create_secrets",
+              "type": "boolean",
+              "default_value": true,
+              "required": false
+            },
+            {
+              "key": "elastic_instance_crn",
+              "type": "string",
+              "default_value": "__NULL__",
+              "required": false
+            },
+            {
+              "key": "cos_kms_key_crn",
+              "type": "string",
+              "default_value": "__NULL__",
+              "required": false
+            },
+            {
+              "key": "watson_discovery_region",
+              "type": "string",
+              "default_value": "__NULL__",
+              "required": false
+            },
+            {
+              "key": "use_existing_resource_group",
+              "type": "boolean",
+              "default_value": "false",
+              "required": false
+            },
+            {
+              "key": "elastic_credentials_name",
+              "type": "string",
+              "default_value": "wxasst_db_user",
+              "required": false
+            },
+            {
+              "key": "watson_assistant_instance_id",
+              "type": "string",
+              "default_value": "__NOT_SET__",
+              "required": true
+            },
+            {
+              "key": "secrets_manager_endpoint_type",
+              "type": "string",
+              "default_value": "private",
+              "required": false
+            },
+            {
+              "key": "resource_group_name",
+              "type": "string",
+              "default_value": "__NULL__",
+              "required": false
+            },
+            {
+              "key": "watson_machine_learning_instance_crn",
+              "type": "string",
+              "default_value": "__NULL__",
+              "required": false
+            },
+            {
+              "key": "toolchain_resource_group",
+              "type": "string",
+              "default_value": "__NOT_SET__",
               "required": true
             },
             {
               "key": "signing_key",
               "type": "password",
-              "description": "The key used to sign the application image built by the CI pipeline deployed in this solution; please refer to the documentation at https://github.com/terraform-ibm-modules/stack-retrieval-augmented-generation/blob/main/README.md for generating the key; if not set, all resources will deploy successfully, but the initial CI pipeline execution will fail at the signing step.",
-              "display_name": "Multiline secure value",
-              "default_value": "replace",
-              "required": false,
-              "custom_config": {
-                "type": "multiline_secure_value",
-                "grouping": "deployment",
-                "original_grouping": "deployment"
-              }
+              "required": true
             },
             {
-              "key": "region",
+              "key": "cd_pipeline_id",
               "type": "string",
-              "default_value": "us-south",
-              "description": "The region in which all resources are deployed.",
-              "required": false,
-              "options": [
-                {
-                  "displayname": "us-south",
-                  "value": "us-south"
-                },
-                {
-                  "displayname": "eu-de",
-                  "value": "eu-de"
-                }
-              ]
+              "default_value": "__NOT_SET__",
+              "required": true
             },
             {
-              "key": "existing_resource_group_name",
+              "key": "secrets_manager_region",
+              "type": "string",
+              "default_value": "__NOT_SET__",
+              "required": true
+            },
+            {
+              "key": "watson_assistant_region",
+              "type": "string",
+              "default_value": "__NOT_SET__",
+              "required": true
+            },
+            {
+              "key": "ci_pipeline_id",
+              "type": "string",
+              "default_value": "__NOT_SET__",
+              "required": true
+            },
+            {
+              "key": "watson_project_name",
+              "type": "string",
+              "default_value": "RAG-sample-project",
+              "required": false
+            },
+            {
+              "key": "elastic_upload_sample_data",
+              "type": "boolean",
+              "default_value": true,
+              "required": false
+            },
+            {
+              "key": "create_continuous_delivery_service_instance",
+              "type": "boolean",
+              "default_value": true,
+              "required": false
+            },
+            {
+              "key": "inventory_repo_url",
               "type": "string",
               "default_value": "__NULL__",
-              "description": "The name of an existing resource group that is used by this solution, takes precedence over resource_group_name. Prefix is NOT used for existing resource group. All resources created by this solution are deployed in this resource group.",
               "required": false
+            },
+            {
+              "key": "watson_machine_learning_instance_guid",
+              "type": "string",
+              "default_value": "__NULL__",
+              "required": false
+            },
+            {
+              "key": "cos_kms_new_key_name",
+              "type": "string",
+              "default_value": "",
+              "required": false
+            },
+            {
+              "key": "watson_discovery_instance_id",
+              "type": "string",
+              "default_value": "__NULL__",
+              "required": false
+            },
+            {
+              "key": "cos_kms_ring_id",
+              "type": "string",
+              "default_value": "__NULL__",
+              "required": false
+            },
+            {
+              "key": "watsonx_admin_api_key",
+              "type": "password",
+              "required": false
+            },
+            {
+              "key": "prefix",
+              "type": "string",
+              "default_value": "__NOT_SET__",
+              "required": true
             }
           ],
           "release_notes_url": "RELEASE NOTES URL",
