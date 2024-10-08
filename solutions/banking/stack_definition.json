@@ -1,134 +1,448 @@
 {
-  "inputs": [
-    {
-      "name": "prefix",
-      "required": true,
-      "type": "string",
-      "hidden": false,
-      "default": "rag"
-    },
-    {
-      "name": "existing_resource_group_name",
-      "required": false,
-      "type": "string",
-      "hidden": false,
-      "default": null
-    },
-    {
-      "name": "region",
-      "required": false,
-      "type": "string",
-      "hidden": false,
-      "default": "us-south"
-    },
-    {
-      "name": "signing_key",
-      "required": false,
-      "type": "password",
-      "hidden": false,
-      "default": "replace"
-    }
-  ],
-  "members": [
-    {
-      "inputs": [
-        {
-          "name": "toolchain_region",
-          "value": "ref:../../inputs/region"
-        },
-        {
-          "name": "ibmcloud_api_key",
-          "value": ""
-        },
-        {
-          "name": "watson_discovery_region",
-          "value": "ref:../../inputs/region"
-        },
-        {
-          "name": "watson_assistant_region",
-          "value": "ref:../../inputs/region"
-        },
-        {
-          "name": "watson_assistant_instance_id",
-          "value": "ref:../Gen AI - WatsonX SaaS services/outputs/watsonx_assistant_guid"
-        },
-        {
-          "name": "cd_pipeline_id",
-          "value": "ref:../Workload - Application Lifecycle Management/outputs/cd_pipeline_id"
-        },
-        {
-          "name": "ci_pipeline_id",
-          "value": "ref:../Workload - Application Lifecycle Management/outputs/ci_pipeline_id"
-        },
-        {
-          "name": "watson_machine_learning_instance_guid",
-          "value": "ref:../Gen AI - WatsonX SaaS services/outputs/watson_machine_learning_guid"
-        },
-        {
-          "name": "watson_machine_learning_instance_resource_name",
-          "value": "ref:../Gen AI - WatsonX SaaS services/outputs/watson_machine_learning_name"
-        },
-        {
-          "name": "watson_machine_learning_instance_crn",
-          "value": "ref:../Gen AI - WatsonX SaaS services/outputs/watson_machine_learning_crn"
-        },
-        {
-          "name": "toolchain_resource_group",
-          "value": "ref:../Account Infrastructure Base/outputs/devops_resource_group_name"
-        },
-        {
-          "name": "prefix",
-          "value": "ref:../../inputs/prefix"
-        },
-        {
-          "name": "resource_group_name",
-          "value": "ref:../Account Infrastructure Base/outputs/devops_resource_group_name"
-        },
-        {
-          "name": "use_existing_resource_group",
-          "value": true
-        },
-        {
-          "name": "signing_key",
-          "value": "ref:../../inputs/signing_key"
-        },
-        {
-          "name": "secrets_manager_guid",
-          "value": "ref:../Essential Security - Secrets Manager/outputs/secrets_manager_guid"
-        },
-        {
-          "name": "secrets_manager_region",
-          "value": "ref:../Essential Security - Secrets Manager/outputs/secrets_manager_region"
-        },
-        {
-          "name": "elastic_instance_crn",
-          "value": "ref:../Gen AI - Databases for Elasticsearch/outputs/crn"
-        },
-        {
-          "name": "cos_kms_crn",
-          "value": "ref:../Essential Security - Encryption Key Management/outputs/kms_instance_crn"
-        }
-      ],
-      "name": "Testing - Sample Retrieval Augmented Generation App Config",
-      "version_locator": "f64499c8-eb50-4985-bf91-29f9e605a433.9c08d62a-bab9-4da1-9aaf-b0e2438f41e5"
-    }
-  ],
-  "outputs": [
-    {
-      "name": "watsonx_project_url",
-      "value": "ref:./members/Testing - Sample RAG App Configuration/outputs/watsonx_project_url"
-    },
-    {
-      "name": "watsonx_project_id",
-      "value": "ref:./members/Testing - Sample RAG App Configuration/outputs/watsonx_project_id"
-    },
-    {
-      "name": "watson_discovery_api_url",
-      "value": "ref:./members/Testing - Sample RAG App Configuration/outputs/watson_discovery_api_url"
-    },
-    {
-      "name": "watson_discovery_project_id",
-      "value": "ref:./members/Testing - Sample RAG App Configuration/outputs/watson_discovery_project_id"
-    }
-  ]
+	"inputs": [
+		{
+			"name": "cos_kms_crn",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "trigger_ci_pipeline_run",
+			"required": false,
+			"type": "boolean",
+			"hidden": false,
+			"default": true,
+			"custom_config": {}
+		},
+		{
+			"name": "toolchain_region",
+			"required": true,
+			"type": "string",
+			"hidden": false,
+			"default": "__NOT_SET__",
+			"custom_config": {}
+		},
+		{
+			"name": "watson_machine_learning_instance_resource_name",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "watson_project_sensitive",
+			"required": false,
+			"type": "boolean",
+			"hidden": false,
+			"default": "false",
+			"custom_config": {}
+		},
+		{
+			"name": "elastic_index_name",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "sample-rag-app-content",
+			"custom_config": {}
+		},
+		{
+			"name": "secrets_manager_guid",
+			"required": true,
+			"type": "string",
+			"hidden": false,
+			"default": "__NOT_SET__",
+			"custom_config": {}
+		},
+		{
+			"name": "create_secrets",
+			"required": false,
+			"type": "boolean",
+			"hidden": false,
+			"default": true,
+			"custom_config": {}
+		},
+		{
+			"name": "elastic_instance_crn",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "cos_kms_key_crn",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "watson_discovery_region",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "use_existing_resource_group",
+			"required": false,
+			"type": "boolean",
+			"hidden": false,
+			"default": "false",
+			"custom_config": {}
+		},
+		{
+			"name": "elastic_credentials_name",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "wxasst_db_user",
+			"custom_config": {}
+		},
+		{
+			"name": "watson_assistant_instance_id",
+			"required": true,
+			"type": "string",
+			"hidden": false,
+			"default": "__NOT_SET__",
+			"custom_config": {}
+		},
+		{
+			"name": "secrets_manager_endpoint_type",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "private",
+			"custom_config": {}
+		},
+		{
+			"name": "resource_group_name",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "watson_machine_learning_instance_crn",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "toolchain_resource_group",
+			"required": true,
+			"type": "string",
+			"hidden": false,
+			"default": "__NOT_SET__",
+			"custom_config": {}
+		},
+		{
+			"name": "signing_key",
+			"required": true,
+			"type": "password",
+			"hidden": false,
+			"custom_config": {}
+		},
+		{
+			"name": "cd_pipeline_id",
+			"required": true,
+			"type": "string",
+			"hidden": false,
+			"default": "__NOT_SET__",
+			"custom_config": {}
+		},
+		{
+			"name": "secrets_manager_region",
+			"required": true,
+			"type": "string",
+			"hidden": false,
+			"default": "__NOT_SET__",
+			"custom_config": {}
+		},
+		{
+			"name": "watson_assistant_region",
+			"required": true,
+			"type": "string",
+			"hidden": false,
+			"default": "__NOT_SET__",
+			"custom_config": {}
+		},
+		{
+			"name": "ci_pipeline_id",
+			"required": true,
+			"type": "string",
+			"hidden": false,
+			"default": "__NOT_SET__",
+			"custom_config": {}
+		},
+		{
+			"name": "watson_project_name",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "RAG-sample-project",
+			"custom_config": {}
+		},
+		{
+			"name": "elastic_upload_sample_data",
+			"required": false,
+			"type": "boolean",
+			"hidden": false,
+			"default": true,
+			"custom_config": {}
+		},
+		{
+			"name": "create_continuous_delivery_service_instance",
+			"required": false,
+			"type": "boolean",
+			"hidden": false,
+			"default": true,
+			"custom_config": {}
+		},
+		{
+			"name": "inventory_repo_url",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "watson_machine_learning_instance_guid",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "cos_kms_new_key_name",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "",
+			"custom_config": {}
+		},
+		{
+			"name": "watson_discovery_instance_id",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "cos_kms_ring_id",
+			"required": false,
+			"type": "string",
+			"hidden": false,
+			"default": "__NULL__",
+			"custom_config": {}
+		},
+		{
+			"name": "watsonx_admin_api_key",
+			"required": false,
+			"type": "password",
+			"hidden": false,
+			"custom_config": {}
+		},
+		{
+			"name": "prefix",
+			"required": true,
+			"type": "string",
+			"hidden": false,
+			"default": "__NOT_SET__",
+			"custom_config": {}
+		}
+	],
+	"members": [
+		{
+			"inputs": [
+				{
+					"name": "cd_pipeline_id",
+					"value": "ref:../../inputs/cd_pipeline_id"
+				},
+				{
+					"name": "ci_pipeline_id",
+					"value": "ref:../../inputs/ci_pipeline_id"
+				},
+				{
+					"name": "cos_kms_crn",
+					"value": "ref:../../inputs/cos_kms_crn"
+				},
+				{
+					"name": "cos_kms_key_crn",
+					"value": "ref:../../inputs/cos_kms_key_crn"
+				},
+				{
+					"name": "cos_kms_new_key_name",
+					"value": "ref:../../inputs/cos_kms_new_key_name"
+				},
+				{
+					"name": "cos_kms_ring_id",
+					"value": "ref:../../inputs/cos_kms_ring_id"
+				},
+				{
+					"name": "create_continuous_delivery_service_instance",
+					"value": "ref:../../inputs/create_continuous_delivery_service_instance"
+				},
+				{
+					"name": "create_secrets",
+					"value": "ref:../../inputs/create_secrets"
+				},
+				{
+					"name": "elastic_credentials_name",
+					"value": "ref:../../inputs/elastic_credentials_name"
+				},
+				{
+					"name": "elastic_index_name",
+					"value": "ref:../../inputs/elastic_index_name"
+				},
+				{
+					"name": "elastic_instance_crn",
+					"value": "ref:../../inputs/elastic_instance_crn"
+				},
+				{
+					"name": "elastic_upload_sample_data",
+					"value": "ref:../../inputs/elastic_upload_sample_data"
+				},
+				{
+					"name": "inventory_repo_url",
+					"value": "ref:../../inputs/inventory_repo_url"
+				},
+				{
+					"name": "prefix",
+					"value": "ref:../../inputs/prefix"
+				},
+				{
+					"name": "resource_group_name",
+					"value": "ref:../../inputs/resource_group_name"
+				},
+				{
+					"name": "secrets_manager_endpoint_type",
+					"value": "ref:../../inputs/secrets_manager_endpoint_type"
+				},
+				{
+					"name": "secrets_manager_guid",
+					"value": "ref:../../inputs/secrets_manager_guid"
+				},
+				{
+					"name": "secrets_manager_region",
+					"value": "ref:../../inputs/secrets_manager_region"
+				},
+				{
+					"name": "signing_key",
+					"value": "ref:../../inputs/signing_key"
+				},
+				{
+					"name": "toolchain_region",
+					"value": "ref:../../inputs/toolchain_region"
+				},
+				{
+					"name": "toolchain_resource_group",
+					"value": "ref:../../inputs/toolchain_resource_group"
+				},
+				{
+					"name": "trigger_ci_pipeline_run",
+					"value": "ref:../../inputs/trigger_ci_pipeline_run"
+				},
+				{
+					"name": "use_existing_resource_group",
+					"value": "ref:../../inputs/use_existing_resource_group"
+				},
+				{
+					"name": "watson_assistant_instance_id",
+					"value": "ref:../../inputs/watson_assistant_instance_id"
+				},
+				{
+					"name": "watson_assistant_region",
+					"value": "ref:../../inputs/watson_assistant_region"
+				},
+				{
+					"name": "watson_discovery_instance_id",
+					"value": "ref:../../inputs/watson_discovery_instance_id"
+				},
+				{
+					"name": "watson_discovery_region",
+					"value": "ref:../../inputs/watson_discovery_region"
+				},
+				{
+					"name": "watson_machine_learning_instance_crn",
+					"value": "ref:../../inputs/watson_machine_learning_instance_crn"
+				},
+				{
+					"name": "watson_machine_learning_instance_guid",
+					"value": "ref:../../inputs/watson_machine_learning_instance_guid"
+				},
+				{
+					"name": "watson_machine_learning_instance_resource_name",
+					"value": "ref:../../inputs/watson_machine_learning_instance_resource_name"
+				},
+				{
+					"name": "watson_project_name",
+					"value": "ref:../../inputs/watson_project_name"
+				},
+				{
+					"name": "watson_project_sensitive",
+					"value": "ref:../../inputs/watson_project_sensitive"
+				},
+				{
+					"name": "watsonx_admin_api_key",
+					"value": "ref:../../inputs/watsonx_admin_api_key"
+				}
+			],
+			"name": "testing-customer-care-gen-ai-app-config-da-cc1d",
+			"version_locator": "f64499c8-eb50-4985-bf91-29f9e605a433.9c08d62a-bab9-4da1-9aaf-b0e2438f41e5"
+		}
+	],
+	"outputs": [
+		{
+			"name": "watson_discovery_api_url",
+			"value": "ref:./members/testing-customer-care-gen-ai-app-config-da-cc1d/outputs/watson_discovery_api_url"
+		},
+		{
+			"name": "watsonx_project_url",
+			"value": "ref:./members/testing-customer-care-gen-ai-app-config-da-cc1d/outputs/watsonx_project_url"
+		},
+		{
+			"name": "cos_instance_crn",
+			"value": "ref:./members/testing-customer-care-gen-ai-app-config-da-cc1d/outputs/cos_instance_crn"
+		},
+		{
+			"name": "watsonx_project_id",
+			"value": "ref:./members/testing-customer-care-gen-ai-app-config-da-cc1d/outputs/watsonx_project_id"
+		},
+		{
+			"name": "elastic_collection_count",
+			"value": "ref:./members/testing-customer-care-gen-ai-app-config-da-cc1d/outputs/elastic_collection_count"
+		},
+		{
+			"name": "watsonx_assistant_integration_id",
+			"value": "ref:./members/testing-customer-care-gen-ai-app-config-da-cc1d/outputs/watsonx_assistant_integration_id"
+		},
+		{
+			"name": "watsonx_assistant_environment",
+			"value": "ref:./members/testing-customer-care-gen-ai-app-config-da-cc1d/outputs/watsonx_assistant_environment"
+		},
+		{
+			"name": "watson_discovery_project_id",
+			"value": "ref:./members/testing-customer-care-gen-ai-app-config-da-cc1d/outputs/watson_discovery_project_id"
+		},
+		{
+			"name": "watsonx_assistant_skills_status",
+			"value": "ref:./members/testing-customer-care-gen-ai-app-config-da-cc1d/outputs/watsonx_assistant_skills_status"
+		},
+		{
+			"name": "watsonx_assistant_api_url",
+			"value": "ref:./members/testing-customer-care-gen-ai-app-config-da-cc1d/outputs/watsonx_assistant_api_url"
+		}
+	]
 }
