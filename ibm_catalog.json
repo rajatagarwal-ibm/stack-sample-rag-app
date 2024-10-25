@@ -77,6 +77,19 @@
               "name": "Testing_Retrieval_Augmented_Generation_Pattern_dev",
               "optional": false,
               "version": "^1.0.3"
+            },
+            {
+              "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
+              "flavors": [
+                "Instances"
+              ],
+              "id": "9423f9bc-1290-4c71-a9ac-01898bfa7ccc-global",
+              "input_mapping": [
+
+              ],
+              "name": "deploy-arch-ibm-scc",
+              "optional": true,
+              "version": "^1.20.0"
             }
           ],
           "dependency_version_2": true,
