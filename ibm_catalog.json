@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "label": "Testing (stack) - Sample Retrieval Augmented Generation App Config",
+      "label": "Testing - Retrieval Augmented Generation (RAG) Pattern",
       "name": "testing-customer-care-gen-ai-app-config-stack",
       "product_kind": "solution",
       "tags": [],
@@ -11,8 +11,8 @@
       "provider_name": "IBM",
       "flavors": [
         {
-          "label": "Banking Application",
-          "name": "banking",
+          "label": "Sample Application",
+          "name": "sample_app",
           "working_directory": "./solutions/banking",
           "licenses": [
             {
@@ -53,6 +53,19 @@
           },
           "dependencies": [
             {
+              "name": "testing-customer-care-gen-ai-app-config-da",
+              "catalog_id": "f64499c8-eb50-4985-bf91-29f9e605a433",
+              "flavors": [
+                "banking"
+              ],
+              "id": "bdb533aa-fe34-4f3b-bf35-0007fee74221",
+              "input_mapping": [
+              ],
+
+              "optional": true,
+              "version": "^1.0.6"
+            },
+            {
               "name": "Testing_Gen_AI",
               "catalog_id": "f64499c8-eb50-4985-bf91-29f9e605a433",
               "flavors": [
@@ -62,7 +75,7 @@
               "input_mapping": [
               ],
 
-              "optional": false,
+              "optional": true,
               "version": "^1.0.9"
             },
             {
@@ -76,7 +89,7 @@
               "input_mapping": [
 
               ],
-              "optional": false,
+              "optional": true,
               "version": "^1.0.3"
             },
             {
@@ -95,202 +108,6 @@
           ],
           "dependency_version_2": true,
           "configuration": [
-            {
-              "key": "cos_kms_crn",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "trigger_ci_pipeline_run",
-              "type": "boolean",
-              "default_value": true,
-              "required": false
-            },
-            {
-              "key": "toolchain_region",
-              "type": "string",
-              "default_value": "__NOT_SET__",
-              "required": true
-            },
-            {
-              "key": "watson_machine_learning_instance_resource_name",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "watson_project_sensitive",
-              "type": "boolean",
-              "default_value": "false",
-              "required": false
-            },
-            {
-              "key": "elastic_index_name",
-              "type": "string",
-              "default_value": "sample-rag-app-content",
-              "required": false
-            },
-            {
-              "key": "secrets_manager_guid",
-              "type": "string",
-              "default_value": "__NOT_SET__",
-              "required": true
-            },
-            {
-              "key": "create_secrets",
-              "type": "boolean",
-              "default_value": true,
-              "required": false
-            },
-            {
-              "key": "elastic_instance_crn",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "cos_kms_key_crn",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "watson_discovery_region",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "use_existing_resource_group",
-              "type": "boolean",
-              "default_value": "false",
-              "required": false
-            },
-            {
-              "key": "elastic_credentials_name",
-              "type": "string",
-              "default_value": "wxasst_db_user",
-              "required": false
-            },
-            {
-              "key": "watson_assistant_instance_id",
-              "type": "string",
-              "default_value": "__NOT_SET__",
-              "required": true
-            },
-            {
-              "key": "secrets_manager_endpoint_type",
-              "type": "string",
-              "default_value": "private",
-              "required": false
-            },
-            {
-              "key": "resource_group_name",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "watson_machine_learning_instance_crn",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "toolchain_resource_group",
-              "type": "string",
-              "default_value": "__NOT_SET__",
-              "required": true
-            },
-            {
-              "key": "signing_key",
-              "type": "password",
-              "required": true
-            },
-            {
-              "key": "cd_pipeline_id",
-              "type": "string",
-              "default_value": "__NOT_SET__",
-              "required": true
-            },
-            {
-              "key": "secrets_manager_region",
-              "type": "string",
-              "default_value": "__NOT_SET__",
-              "required": true
-            },
-            {
-              "key": "watson_assistant_region",
-              "type": "string",
-              "default_value": "__NOT_SET__",
-              "required": true
-            },
-            {
-              "key": "ci_pipeline_id",
-              "type": "string",
-              "default_value": "__NOT_SET__",
-              "required": true
-            },
-            {
-              "key": "watson_project_name",
-              "type": "string",
-              "default_value": "RAG-sample-project",
-              "required": false
-            },
-            {
-              "key": "elastic_upload_sample_data",
-              "type": "boolean",
-              "default_value": true,
-              "required": false
-            },
-            {
-              "key": "create_continuous_delivery_service_instance",
-              "type": "boolean",
-              "default_value": true,
-              "required": false
-            },
-            {
-              "key": "inventory_repo_url",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "watson_machine_learning_instance_guid",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "cos_kms_new_key_name",
-              "type": "string",
-              "default_value": "",
-              "required": false
-            },
-            {
-              "key": "watson_discovery_instance_id",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "cos_kms_ring_id",
-              "type": "string",
-              "default_value": "__NULL__",
-              "required": false
-            },
-            {
-              "key": "watsonx_admin_api_key",
-              "type": "password",
-              "required": false
-            },
-            {
-              "key": "prefix",
-              "type": "string",
-              "default_value": "__NOT_SET__",
-              "required": true
-            }
           ],
           "release_notes_url": "RELEASE NOTES URL",
           "outputs": [
