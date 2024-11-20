@@ -4,8 +4,8 @@
 	],
 	"members": [
 		{
-			"name": "testing-customer-care-gen-ai-app-config-da-cc1d",
-			"version_locator": "f64499c8-eb50-4985-bf91-29f9e605a433.9c08d62a-bab9-4da1-9aaf-b0e2438f41e5"
+			"name": "testing-deploy-arch-ibm-mock-module",
+			"version_locator": "f64499c8-eb50-4985-bf91-29f9e605a433.7eaba03d-e5bb-4b74-a75f-84975694b945"
 		}
 	],
 	"outputs": [
