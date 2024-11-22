@@ -11,8 +11,8 @@
       "provider_name": "IBM",
       "flavors": [
         {
-          "label": "Mock Solution",
-          "name": "mock_solution",
+          "label": "Sample Application",
+          "name": "sample_app",
           "working_directory": "./solutions/banking",
           "licenses": [
             {
